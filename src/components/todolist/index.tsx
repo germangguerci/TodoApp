@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TodoStoreImpl } from './store';
 import { Todo } from './todo';
 import {SelectTodosPerPage} from './SelectTodosPP';
@@ -15,6 +15,12 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
     const [difficulty, setDifficulty] = useState(0); 
     const [todosPerPage, setTodosPerPage] = useState(5);
     const [page, setCurrentPage] = useState(1); 
+    const [openAdd, setOpenAdd] = useState(false);
+
+
+    useEffect(() => {
+        !todoStore.todos[(page * todosPerPage)] && setCurrentPage(1);
+    }, [todosPerPage])
 
     const displayTodos = () => {
         let count = 0; 
@@ -35,6 +41,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
             setCurrentPage(page + 1)
         }
     }
+
 
     return <div>
         <input
@@ -58,6 +65,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
             }
         }}>submit</button>
 
+        
         <button onClick={previousPage}>Previous page</button>
         <button onClick={nextPage}>Next page</button>
         <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
