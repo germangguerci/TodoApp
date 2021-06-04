@@ -9,7 +9,7 @@ export const SelectTodosPerPage : React.FC <SelectProps> = ({setTodosPerPage}) =
     
     useEffect(() => {
         setTodosPerPage(value)    
-    }, [value]);
+    }, [value, setTodosPerPage]);
 
     return (
         <select value={value} onChange={(event) => setValue(parseInt(event.target.value))}>

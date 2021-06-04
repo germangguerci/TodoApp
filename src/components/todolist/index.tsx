@@ -2,8 +2,8 @@ import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
 import { TodoStoreImpl } from './store';
 import { Todo } from './todo';
-import {SelectTodosPerPage} from './SelectTodosPP';
-
+import { SelectTodosPerPage } from './SelectTodosPP';
+import { AddTodoModal } from './modals/AddTodoModal';
 
 interface TodoListProps {
     todoStore: TodoStoreImpl
@@ -11,8 +11,7 @@ interface TodoListProps {
 
 export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
 
-    const [value, setValue] = useState('');
-    const [difficulty, setDifficulty] = useState(0); 
+  
     const [todosPerPage, setTodosPerPage] = useState(5);
     const [page, setCurrentPage] = useState(1); 
     const [openAdd, setOpenAdd] = useState(false);
@@ -29,6 +28,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
                 count++
                 return <Todo key={index} title={todo.title} difficulty={todo.difficulty} completed={todo.completed}/>
             }
+            return null
         })
     }
 
@@ -44,32 +44,19 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
 
 
     return <div>
-        <input
-            value={value}
-            onChange={(event) => { 
-                setValue(event.target.value);
-            }}
-            type="text" />  
-        
-        <input
-        value={difficulty}
-        onChange={(event) => { 
-            setDifficulty(parseInt(event.target.value));
-        }}
-        type="number" />  
+       
 
-        <button onClick={() => {
-            if (value) {
-                todoStore.addTodo(value, difficulty);
-                setValue('');
-            }
-        }}>submit</button>
+        <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>
 
-        
         <button onClick={previousPage}>Previous page</button>
+
         <button onClick={nextPage}>Next page</button>
+
         <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
+
         <span>Page: {page}</span>
+
+        <button onClick={() => setOpenAdd(true)}>Add task</button>
         <ul>
             {displayTodos()}
         </ul>
