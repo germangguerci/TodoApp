@@ -4,6 +4,7 @@ import { TodoStoreImpl } from './store';
 import { Todo } from './todo';
 import { SelectTodosPerPage } from './SelectTodosPP';
 import { AddTodoModal } from './modals/AddTodoModal';
+import { UpdateTodoModal } from './modals/UpdateTodoModal'
 
 interface TodoListProps {
     todoStore: TodoStoreImpl
@@ -15,6 +16,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
     const [todosPerPage, setTodosPerPage] = useState(5);
     const [page, setCurrentPage] = useState(1); 
     const [openAdd, setOpenAdd] = useState(false);
+    const [openUpdate, setOpenUpdate] = useState(false);
 
 
     useEffect(() => {
@@ -44,22 +46,22 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
 
 
     return <div>
-       
+                <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>
+                
+                <UpdateTodoModal openUpdate={openUpdate} setOpenUpdate={setOpenUpdate} todoStore={todoStore}/>
 
-        <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>
 
-        <button onClick={previousPage}>Previous page</button>
+                <button onClick={previousPage}>Previous page</button>
 
-        <button onClick={nextPage}>Next page</button>
+                <button onClick={nextPage}>Next page</button>
 
-        <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
+                <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
 
-        <span>Page: {page}</span>
+                <span>Page: {page}</span>
 
-        <button onClick={() => setOpenAdd(true)}>Add task</button>
-        <ul>
-            {displayTodos()}
-        </ul>
-
+                <button onClick={() => setOpenAdd(true)}>Add task</button>
+                <ul>
+                    {displayTodos()}
+                </ul>
     </div>
 });
