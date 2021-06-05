@@ -4,7 +4,7 @@ import { TodoStoreImpl } from './store';
 import { Todo } from './todo';
 import { SelectTodosPerPage } from './SelectTodosPP';
 import { AddTodoModal } from './modals/AddTodoModal';
-import { UpdateTodoModal } from './modals/UpdateTodoModal'
+import { UpdateTodoModal } from './modals/UpdateTodoModal';
 
 interface TodoListProps {
     todoStore: TodoStoreImpl
@@ -17,6 +17,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
     const [page, setCurrentPage] = useState(1); 
     const [openAdd, setOpenAdd] = useState(false);
     const [openUpdate, setOpenUpdate] = useState({open: false, todoToUpdate: 0});
+    const [bulkSelection, setBulkSelection] = useState<Array<number>>([]);
 
 
     useEffect(() => {
@@ -29,7 +30,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
             if((index >= (page - 1) * todosPerPage) && count < todosPerPage){
                 count++
                 return <Todo key={index} id={todo.id} title={todo.title} difficulty={todo.difficulty} completed={todo.completed} 
-                setOpenUpdate={setOpenUpdate}/>
+                setOpenUpdate={setOpenUpdate} bulkSelection={bulkSelection} setBulkSelection={setBulkSelection}/>
             }
             return null
         })
