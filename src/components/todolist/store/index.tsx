@@ -17,7 +17,7 @@ export class TodoStoreImpl {
         makeObservable(this, {
            todos: observable,
            addTodo: action,
-           toggleTodo: action,
+           updateTodo: action,
         });
     }
 
@@ -31,10 +31,15 @@ export class TodoStoreImpl {
         this.todos.push(item);
     }
 
-    toggleTodo(id: number) {
+    updateTodo(id: number, title: string, difficulty: number, completed: boolean) {
         const index = this.todos.findIndex(item => item.id === id);
         if (index > -1) {
-            this.todos[index].completed = !this.todos[index].completed;
+            this.todos[index] = {
+                id,
+                title,
+                difficulty,
+                completed
+            }
         }
     }
 }

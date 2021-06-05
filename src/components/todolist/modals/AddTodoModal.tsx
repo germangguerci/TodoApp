@@ -13,7 +13,7 @@ export const AddTodoModal: React.FC<addTodoModalProps> = ({openAdd, setOpenAdd, 
     const [difficulty, setDifficulty] = useState(0); 
 
     return (
-        <div id="myModal" className={`modal ${openAdd ? "modal--block" : "modal--hidden"}`}>
+        <div id="myModal" className="modal">
             <div className="modal-content">
                 <span className="close" onClick={() => setOpenAdd(false)}>&times;</span>
                 <p>Some text in the Modal..</p>

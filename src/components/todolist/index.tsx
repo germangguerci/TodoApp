@@ -16,7 +16,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
     const [todosPerPage, setTodosPerPage] = useState(5);
     const [page, setCurrentPage] = useState(1); 
     const [openAdd, setOpenAdd] = useState(false);
-    const [openUpdate, setOpenUpdate] = useState(false);
+    const [openUpdate, setOpenUpdate] = useState({open: false, todoToUpdate: 0});
 
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
         return todoStore.todos.map((todo, index) => {
             if((index >= (page - 1) * todosPerPage) && count < todosPerPage){
                 count++
-                return <Todo key={index} title={todo.title} difficulty={todo.difficulty} completed={todo.completed}/>
+                return <Todo key={index} id={todo.id} title={todo.title} difficulty={todo.difficulty} completed={todo.completed} setOpenUpdate={setOpenUpdate}/>
             }
             return null
         })
@@ -46,10 +46,9 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
 
 
     return <div>
-                <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>
+                {openAdd && <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>}
                 
-                <UpdateTodoModal openUpdate={openUpdate} setOpenUpdate={setOpenUpdate} todoStore={todoStore}/>
-
+                {openUpdate.open && <UpdateTodoModal openUpdate={openUpdate} setOpenUpdate={setOpenUpdate} />}
 
                 <button onClick={previousPage}>Previous page</button>
 

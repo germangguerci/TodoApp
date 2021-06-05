@@ -1,12 +1,14 @@
 import React from 'react';
 
 interface TodoProps {
-    title: string
-    difficulty: number
-    completed: boolean
+    id: Number
+    title: String
+    difficulty: Number
+    completed: Boolean
+    setOpenUpdate: Function
 }
 
-export const Todo: React.FC<TodoProps> = ({title, difficulty, completed}) => {
+export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, setOpenUpdate}) => {
 
     const calculateDifficulty = ():string => {
         if(difficulty >= 5){
@@ -24,5 +26,6 @@ export const Todo: React.FC<TodoProps> = ({title, difficulty, completed}) => {
             <span>{title}</span>
             <span>{calculateDifficulty()}</span>
         </div>
+        <button onClick={() => setOpenUpdate({open: true, todoToUpdate: id})}>Open</button>
     </li>)
 }
