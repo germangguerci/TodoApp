@@ -25,6 +25,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
 
     useEffect(() => {
         !todoStore.todos[(page * todosPerPage)] && setCurrentPage(1);
+        // eslint-disable-next-line
     }, [todosPerPage])
 
     const displayTodos = () => {
