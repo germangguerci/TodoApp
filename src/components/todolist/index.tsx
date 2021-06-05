@@ -28,7 +28,8 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
         return todoStore.todos.map((todo, index) => {
             if((index >= (page - 1) * todosPerPage) && count < todosPerPage){
                 count++
-                return <Todo key={index} id={todo.id} title={todo.title} difficulty={todo.difficulty} completed={todo.completed} setOpenUpdate={setOpenUpdate}/>
+                return <Todo key={index} id={todo.id} title={todo.title} difficulty={todo.difficulty} completed={todo.completed} 
+                setOpenUpdate={setOpenUpdate}/>
             }
             return null
         })
