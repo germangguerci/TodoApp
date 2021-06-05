@@ -18,6 +18,7 @@ export class TodoStoreImpl {
            todos: observable,
            addTodo: action,
            updateTodo: action,
+           deleteTodo: action,
         });
     }
 
@@ -41,6 +42,10 @@ export class TodoStoreImpl {
                 completed
             }
         }
+    }
+
+    deleteTodo(id:number) {
+        this.todos = this.todos?.filter(item => item.id !== id)
     }
 }
 
