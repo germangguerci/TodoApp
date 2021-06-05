@@ -27,13 +27,21 @@ export const BulkActionAlert: React.FC<BulkActionAlertProps> = observer(function
   };
 
   const handleApply = () => {
-    bulkAction === "Delete" && TodoStore.bulkDelete(bulkSelection); 
-    bulkAction === "Set completed" && TodoStore.bulkUpdate(bulkSelection);
+    if(bulkAction === "Delete"){
+      TodoStore.bulkDelete(bulkSelection); 
+      AlertStore.setNewAlert({
+        message: `${bulkSelection.length} tasks deleted`,
+        severity: "success"
+      })
+    } else{
+        TodoStore.bulkUpdate(bulkSelection);
+        AlertStore.setNewAlert({
+          message: `${bulkSelection.length} tasks completed`,
+          severity: "success"
+        })
+    }
     setBulkSelection([]);
-    AlertStore.setNewAlert({
-      message: "Hola",
-      severity: "success"
-    })
+    
     handleClose();
   }
 
