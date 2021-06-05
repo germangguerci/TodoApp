@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { TodoStore } from '../store';
+import { DeleteAlert } from './alerts/DeleteAlert'
 
 interface TodoProps {
     id: number
@@ -10,7 +10,7 @@ interface TodoProps {
     setOpenUpdate: Function
 }
 
-export const Todo: React.FC<TodoProps> = observer(({id, title, difficulty, completed, setOpenUpdate}) => {
+export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, setOpenUpdate}) => {
 
     const calculateDifficulty = ():string => {
         if(difficulty >= 5){
@@ -29,6 +29,6 @@ export const Todo: React.FC<TodoProps> = observer(({id, title, difficulty, compl
             <span>{completed ? "completo" : ""}</span>
         </div>
         <button onClick={() => setOpenUpdate({open: true, todoToUpdate: id})}>Edit</button>
-        <button onClick={() => TodoStore.deleteTodo(id)}>Delete</button> 
+        <DeleteAlert id={id} />
     </li>)
-})
+}
