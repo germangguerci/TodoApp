@@ -16,10 +16,15 @@ export const UpdateTodoModal: React.FC<updateTodoModalProps> = observer(({openUp
 
     const [title, setTitle] = useState('');
     const [difficulty, setDifficulty] = useState(0); 
-    const [completed, setCompleted] = useState('false');
+    const [completed, setCompleted] = useState(false);
 
     useEffect(() => {
-        setTitle(TodoStore.todos[openUpdate.todoToUpdate]?.title)
+        var myTodo = TodoStore.todos[openUpdate.todoToUpdate]
+        if(myTodo){
+            setTitle(myTodo.title)
+            setDifficulty(myTodo.difficulty)
+            setCompleted(myTodo.completed)
+        }
     }, [openUpdate])
 
     return (
@@ -39,15 +44,14 @@ export const UpdateTodoModal: React.FC<updateTodoModalProps> = observer(({openUp
                     type="number" 
                 />  
 
-                <input
-                    value={completed}
-                    onChange={(event) => setCompleted(event.target.value)}
-                    type="checkbox" 
-                />
+                <button onClick={() => setCompleted(!completed)}>
+                    {completed && "Set incomplet"}
+                    {!completed && "Set completed"}
+                </button>
 
                 <button onClick={() => {
                     if (title) {
-                        //todoStore.addTodo(value, difficulty);  
+                        TodoStore.updateTodo(openUpdate.todoToUpdate, title, difficulty, completed)
                         setTitle('');
                     }
                 }}>submit</button>

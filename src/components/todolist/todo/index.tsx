@@ -22,9 +22,9 @@ export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, set
     return (
     <li>
         <div>
-            <span>{completed ? "x" : ""}</span>
             <span>{title}</span>
             <span>{calculateDifficulty()}</span>
+            <span>{completed ? "completo" : ""}</span>
         </div>
         <button onClick={() => setOpenUpdate({open: true, todoToUpdate: id})}>Open</button>
     </li>)
