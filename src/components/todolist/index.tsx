@@ -7,6 +7,7 @@ import { AddTodoModal } from './modals/AddTodoModal';
 import { UpdateTodoModal } from './modals/UpdateTodoModal';
 import { SelectBulkAction } from './selects/SelectBulkAction';
 import { BulkActionAlert } from './alerts/BulkActionAlert';
+import SimpleAlert from './alerts/SimpleAlert';
 
 interface TodoListProps {
     todoStore: TodoStoreImpl
@@ -49,6 +50,8 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
     }
 
     return <div>
+
+                <SimpleAlert />
                 {openAdd && <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>}
                 
                 {openUpdate.open && <UpdateTodoModal openUpdate={openUpdate} setOpenUpdate={setOpenUpdate} />}

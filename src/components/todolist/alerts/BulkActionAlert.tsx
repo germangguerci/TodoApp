@@ -6,6 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { TodoStore } from '../store';
+import { AlertStore } from './store';
 import { observer } from 'mobx-react';
 
 interface BulkActionAlertProps{
@@ -29,6 +30,10 @@ export const BulkActionAlert: React.FC<BulkActionAlertProps> = observer(function
     bulkAction === "Delete" && TodoStore.bulkDelete(bulkSelection); 
     bulkAction === "Set completed" && TodoStore.bulkUpdate(bulkSelection);
     setBulkSelection([]);
+    AlertStore.setNewAlert({
+      message: "Hola",
+      severity: "success"
+    })
     handleClose();
   }
 
