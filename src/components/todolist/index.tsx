@@ -2,9 +2,10 @@ import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
 import { TodoStoreImpl } from './store';
 import { Todo } from './todo';
-import { SelectTodosPerPage } from './SelectTodosPP';
+import { SelectTodosPerPage } from './selects/SelectTodosPP';
 import { AddTodoModal } from './modals/AddTodoModal';
 import { UpdateTodoModal } from './modals/UpdateTodoModal';
+import { SelectBulkAction } from './selects/SelectBulkAction'
 
 interface TodoListProps {
     todoStore: TodoStoreImpl
@@ -18,11 +19,15 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
     const [openAdd, setOpenAdd] = useState(false);
     const [openUpdate, setOpenUpdate] = useState({open: false, todoToUpdate: 0});
     const [bulkSelection, setBulkSelection] = useState<Array<number>>([]);
-
+    const [bulkAction, setBulkAction] = useState('');
 
     useEffect(() => {
         !todoStore.todos[(page * todosPerPage)] && setCurrentPage(1);
     }, [todosPerPage])
+
+    useEffect(() => {
+        console.log(bulkAction)
+    }, [bulkAction])
 
     const displayTodos = () => {
         let count = 0; 
@@ -57,6 +62,8 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
                 <button onClick={nextPage}>Next page</button>
 
                 <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
+
+                <SelectBulkAction setBulkAction={setBulkAction} bulkAction={bulkAction}/>
 
                 <span>Page: {page}</span>
 

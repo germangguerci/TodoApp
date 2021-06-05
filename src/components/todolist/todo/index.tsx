@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { observer } from 'mobx-react';
 import { DeleteAlert } from './alerts/DeleteAlert'
 
 interface TodoProps {
@@ -18,8 +17,7 @@ export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, set
     useEffect(() => {
         bulkSelection.indexOf(id) === -1 && setSelected(false);
         bulkSelection.indexOf(id) !== -1 && setSelected(true);
-        console.log(bulkSelection)
-    }, [bulkSelection])    
+    }, [bulkSelection, id])    
   
     const calculateDifficulty = ():string => {
         if(difficulty >= 5){
