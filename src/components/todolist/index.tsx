@@ -1,11 +1,12 @@
 import { observer } from 'mobx-react';
 import React, { useEffect, useState } from 'react';
-import { TodoStoreImpl } from './store';
+import { TodoStore, TodoStoreImpl } from './store';
 import { Todo } from './todo';
 import { SelectTodosPerPage } from './selects/SelectTodosPP';
 import { AddTodoModal } from './modals/AddTodoModal';
 import { UpdateTodoModal } from './modals/UpdateTodoModal';
-import { SelectBulkAction } from './selects/SelectBulkAction'
+import { SelectBulkAction } from './selects/SelectBulkAction';
+import { BulkDeleteAlert } from './alerts/BulkDeleteAlert';
 
 interface TodoListProps {
     todoStore: TodoStoreImpl
@@ -51,7 +52,6 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
         }
     }
 
-
     return <div>
                 {openAdd && <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>}
                 
@@ -64,6 +64,8 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
                 <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
 
                 <SelectBulkAction setBulkAction={setBulkAction} bulkAction={bulkAction}/>
+
+                <BulkDeleteAlert bulkSelection={bulkSelection}/>
 
                 <span>Page: {page}</span>
 

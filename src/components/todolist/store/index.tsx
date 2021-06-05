@@ -45,7 +45,11 @@ export class TodoStoreImpl {
     }
 
     deleteTodo(id:number) {
-        this.todos = this.todos?.filter(item => item.id !== id)
+        this.todos = this.todos.filter(item => item.id !== id);
+    }
+
+    bulkDelete(bulkSelection: Array<number>) {
+        this.todos = this.todos.filter(item => bulkSelection.indexOf(item.id) === -1);
     }
 }
 

@@ -40,7 +40,7 @@ export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, set
     }
 
     return (
-    <li>
+    <li onClick={() => console.log(id)}>
         <input type="checkbox" checked={selected} onChange={handleSelect}/>
         <div>
             <span>{title}</span>

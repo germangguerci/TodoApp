@@ -17,9 +17,11 @@ export const UpdateTodoModal: React.FC<updateTodoModalProps> = observer(({openUp
     const [title, setTitle] = useState('');
     const [difficulty, setDifficulty] = useState(0); 
     const [completed, setCompleted] = useState(false);
-    const myTodo = TodoStore.todos[openUpdate.todoToUpdate];
+
+    const myTodo = TodoStore.todos.find(item => item.id === openUpdate.todoToUpdate);
 
     useEffect(() => {
+
         if(myTodo){
             setTitle(myTodo.title)
             setDifficulty(myTodo.difficulty)
