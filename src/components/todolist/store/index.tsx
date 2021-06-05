@@ -51,6 +51,15 @@ export class TodoStoreImpl {
     bulkDelete(bulkSelection: Array<number>) {
         this.todos = this.todos.filter(item => bulkSelection.indexOf(item.id) === -1);
     }
+
+    bulkUpdate(bulkSelection: Array<number>) {
+        this.todos = this.todos.map(item => {
+            if(bulkSelection.indexOf(item.id) !== -1){
+                return {...item, completed: true};
+            }
+            return item
+        })
+    }
 }
 
 export const TodoStore = new TodoStoreImpl();

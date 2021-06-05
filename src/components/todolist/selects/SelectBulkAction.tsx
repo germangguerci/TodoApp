@@ -9,8 +9,8 @@ export const SelectBulkAction : React.FC <SelectBulkProps> = ({setBulkAction, bu
     return (
         <select value={bulkAction} onChange={(event) => setBulkAction(event.target.value)}>
             <option defaultValue="" value="" disabled>Bulk actions</option>	
-            <option value="setcompleted">Set Completed</option>
-            <option value="delete">Delete</option>
+            <option value="Set completed">Set Completed</option>
+            <option value="Delete">Delete</option>
         </select>
     )
 }

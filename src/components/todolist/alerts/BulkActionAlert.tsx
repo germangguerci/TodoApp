@@ -8,11 +8,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { TodoStore } from '../store';
 import { observer } from 'mobx-react';
 
-interface BulkDeleteAlertProps{
+interface BulkActionAlertProps{
   bulkSelection: Array<number>
+  bulkAction: string
+  setBulkSelection: Function
 }
 
-export const BulkDeleteAlert: React.FC<BulkDeleteAlertProps> = observer(function DeleteAlert({bulkSelection}) {
+export const BulkActionAlert: React.FC<BulkActionAlertProps> = observer(function DeleteAlert({bulkSelection, bulkAction, setBulkSelection}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -23,10 +25,17 @@ export const BulkDeleteAlert: React.FC<BulkDeleteAlertProps> = observer(function
     setOpen(false);
   };
 
+  const handleApply = () => {
+    bulkAction === "Delete" && TodoStore.bulkDelete(bulkSelection); 
+    bulkAction === "Set completed" && TodoStore.bulkUpdate(bulkSelection);
+    setBulkSelection([]);
+    handleClose();
+  }
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Delete
+        Apply
       </Button>
       <Dialog
         open={open}
@@ -34,17 +43,17 @@ export const BulkDeleteAlert: React.FC<BulkDeleteAlertProps> = observer(function
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Delete this task?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{`${bulkAction} ${bulkSelection.length} tasks?`}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+         {bulkAction === "Delete" && <DialogContentText id="alert-dialog-description">
             This process can't be undone.
-          </DialogContentText>
+          </DialogContentText>}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Disagree
           </Button>
-          <Button onClick={() => {TodoStore.bulkDelete(bulkSelection); handleClose();}} color="primary" autoFocus>
+          <Button onClick={handleApply} color="primary" autoFocus>
             Agree
           </Button>
         </DialogActions>
