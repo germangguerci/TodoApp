@@ -28,6 +28,14 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
         // eslint-disable-next-line
     }, [todosPerPage])
 
+    const selectAllTasks = () => {
+        let startIndex = ((page - 1) * todosPerPage)
+        let arr = todoStore.todos.slice(startIndex, (startIndex + todosPerPage))
+        let newBulkSelection = [...bulkSelection]
+        arr.forEach(item => newBulkSelection.indexOf(item.id) === -1 && newBulkSelection.push(item.id))
+        setBulkSelection(newBulkSelection);
+    }
+
     const displayTasks = () => {
         let count = 0; 
         return todoStore.todos.map((todo, index) => {
@@ -70,7 +78,7 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
                     <table >
                         <tbody>
                             <tr>
-                                <td><input type="checkbox" /></td>
+                                <td><input type="checkbox" onClick={() => selectAllTasks()}/></td>
                                 <th>Title</th>
                                 <th>Difficulty</th>
                                 <th>Status</th>

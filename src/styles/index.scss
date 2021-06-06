@@ -54,7 +54,6 @@ button{
 //table Options start
 .tableOptions{
   display: flex; 
-
 }
 
 //table start
@@ -63,7 +62,6 @@ button{
 }
 
 table {
-  border-collapse: collapse;
   width: 100%;
   margin: 1em 0;
   background: $secondaryBackgroundColor;
@@ -79,6 +77,7 @@ td, th {
 
 
 
+
 tr:nth-child(even) {
   background-color: #dddddd;
 }
@@ -89,6 +88,7 @@ tr:nth-child(even) {
   button{
     margin: 0;
   }
+  line-height:2em;
 }
 
 .taskTitle{
@@ -138,25 +138,32 @@ tr:nth-child(even) {
   max-width: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   label{
     display: flex;
     flex-direction: column;
+    margin: 1em;
+    font-weight: 600;
     input{
+      margin: 0.4em 0;
       width: fit-content;
     }
   }
   button{
-    max-width: fit-content;
+    width: 100%;
+    font-weight: 600;
+    text-transform: capitalize;
   }
 }
 
 /* The Close Button */
 .close {
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  position: relative;
+  left: 90%;
+  top: 10%;
 }
 
 .close:hover,

@@ -16,27 +16,30 @@ export const AddTodoModal: React.FC<addTodoModalProps> = ({openAdd, setOpenAdd, 
         <div id="myModal" className="modal">
             <div className="modal-content">
                 <span className="close" onClick={() => setOpenAdd(false)}>&times;</span>
-                <p>Some text in the Modal..</p>
-                <input
-                    value={value}
-                    onChange={(event) => { 
-                        setValue(event.target.value);
-                    }}
-                    type="text" />  
-                
-                <input
-                value={difficulty}
-                onChange={(event) => { 
-                    setDifficulty(parseInt(event.target.value));
-                }}
-                type="number" />  
-
+                <label>Title:
+                    <input
+                        value={value}
+                        onChange={(event) => { 
+                            setValue(event.target.value);
+                        }}
+                        type="text" />  
+                </label>
+                <label>Difficulty: 
+                    <input
+                            value={difficulty}
+                            onChange={(event) => setDifficulty(parseInt(event.target.value))}
+                            type="range"
+                            min="1"
+                            max="5"
+                            step="1" 
+                        />
+                </label>
                 <button onClick={() => {
                     if (value) {
                         todoStore.addTodo(value, difficulty);
                         setValue('');
                     }
-                }}>submit</button>
+                }}>Add task</button>
             </div>
         </div>
   )
