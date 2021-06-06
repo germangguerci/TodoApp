@@ -66,15 +66,18 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
                     {(bulkAction !== '' && bulkSelection.length > 0) && <BulkActionAlert bulkSelection={bulkSelection} bulkAction={bulkAction} setBulkSelection={setBulkSelection}/>}
                 </div>
 
-                <ul className="taskList" >
-                    <li className="task">
-                        <input className="firstColumn" type="checkbox" />
-                        <span className="secondColumn">Title</span>
-                        <span className="thirdColumn">Difficulty</span>
-                        <span className="fourthColumn">Completed</span>
-                    </li>
+                <table >
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <th>Title</th>
+                            <th>Difficulty</th>
+                            <th>Completed</th>
+                            <th>Quick Actions</th>
+                        </tr>
                     {displayTasks()}
-                </ul>
+                    </tbody>
+                </table>
 
                 <div className="pagination">
                     <button onClick={previousPage}>{"<"}</button>
