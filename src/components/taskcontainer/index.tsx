@@ -71,7 +71,8 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
                 
                 <div className="tableOptions">
                     <SelectBulkAction setBulkAction={setBulkAction} bulkAction={bulkAction}/>
-                    {(bulkAction !== '' && bulkSelection.length > 0) && <BulkActionAlert bulkSelection={bulkSelection} bulkAction={bulkAction} setBulkSelection={setBulkSelection}/>}
+                    {(bulkAction !== '' && bulkSelection.length > 0) && 
+                    <BulkActionAlert bulkSelection={bulkSelection} bulkAction={bulkAction} setBulkSelection={setBulkSelection}/>}
                     <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
                 </div>
 

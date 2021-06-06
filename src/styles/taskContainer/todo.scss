@@ -1,22 +1,25 @@
 .titleField{
     display:flex;
     align-items:flex-start;
+    line-height:2em;
+    align-items: center;
+
     button{
       margin: 0;
     }
-    line-height:2em;
-  }
+
+}
   
 .taskTitle{
-cursor: pointer;
-color: $contrastColor;
-font-weight: 600;
-margin: 0;
+    cursor: pointer;
+    color: $contrastColor;
+    font-weight: 600;
+    margin: 0;
 }
 
 .deleteIcon{
-color: #1d5d92;
-font-size: 2em;
-cursor: pointer;
-margin-left: 1em;
+    color: #1d5d92;
+    font-size: 2em;
+    cursor: pointer;
+    margin-left: 1em;
 }

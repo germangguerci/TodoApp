@@ -7,7 +7,7 @@ interface addTodoModalProps {
     todoStore: TodoStoreImpl
 }
 
-export const AddTodoModal: React.FC<addTodoModalProps> = ({openAdd, setOpenAdd, todoStore}) => {
+export const AddTodoModal: React.FC<addTodoModalProps> = ({setOpenAdd, todoStore}) => {
 
     const [value, setValue] = useState('');
     const [difficulty, setDifficulty] = useState(0); 

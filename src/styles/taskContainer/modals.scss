@@ -22,16 +22,20 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    
     label{
       display: flex;
       flex-direction: column;
       margin: 1em;
       font-weight: 600;
+
       input{
         margin: 0.4em 0;
         width: fit-content;
       }
+      
     }
+
     button{
       width: 100%;
       font-weight: 600;
