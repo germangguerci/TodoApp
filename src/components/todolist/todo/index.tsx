@@ -40,13 +40,11 @@ export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, set
     }
 
     return (
-    <li onClick={() => console.log(id)}>
-        <input type="checkbox" checked={selected} onChange={handleSelect}/>
-        <div>
-            <span>{title}</span>
-            <span>{calculateDifficulty()}</span>
-            <span>{completed ? "completo" : ""}</span>
-        </div>
+    <li className="task" onClick={() => console.log(id)}>
+        <input className="firstColumn"type="checkbox" checked={selected} onChange={handleSelect}/>
+        <span className="secondColumn">{title}</span>
+        <span className="thirdColumn">{calculateDifficulty()}</span>
+        <span className="fourthColumn">{completed ? "completed" : "incomplete"}</span>
         <button onClick={() => setOpenUpdate({open: true, todoToUpdate: id})}>Edit</button>
         <DeleteAlert id={id} />
     </li>)

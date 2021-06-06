@@ -28,7 +28,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
         // eslint-disable-next-line
     }, [todosPerPage])
 
-    const displayTodos = () => {
+    const displayTasks = () => {
         let count = 0; 
         return todoStore.todos.map((todo, index) => {
             if((index >= (page - 1) * todosPerPage) && count < todosPerPage){
@@ -50,28 +50,36 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
         }
     }
 
-    return <div>
+    return <div className="TodoList">
+                <div>
+                    <h1>Tasks</h1>
+                    <button onClick={() => setOpenAdd(true)}>Add task</button>
+                </div>
 
                 <SimpleAlert />
                 {openAdd && <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>}
-                
                 {openUpdate.open && <UpdateTodoModal openUpdate={openUpdate} setOpenUpdate={setOpenUpdate} />}
+                
+                <div>
+                    <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
+                    <SelectBulkAction setBulkAction={setBulkAction} bulkAction={bulkAction}/>
+                    {(bulkAction !== '' && bulkSelection.length > 0) && <BulkActionAlert bulkSelection={bulkSelection} bulkAction={bulkAction} setBulkSelection={setBulkSelection}/>}
+                </div>
 
-                <button onClick={previousPage}>Previous page</button>
-
-                <button onClick={nextPage}>Next page</button>
-
-                <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
-
-                <SelectBulkAction setBulkAction={setBulkAction} bulkAction={bulkAction}/>
-
-                {(bulkAction !== '' && bulkSelection.length > 0) && <BulkActionAlert bulkSelection={bulkSelection} bulkAction={bulkAction} setBulkSelection={setBulkSelection}/>}
-
-                <span>Page: {page}</span>
-
-                <button onClick={() => setOpenAdd(true)}>Add task</button>
-                <ul>
-                    {displayTodos()}
+                <ul className="taskList" >
+                    <li className="task">
+                        <input className="firstColumn" type="checkbox" />
+                        <span className="secondColumn">Title</span>
+                        <span className="thirdColumn">Difficulty</span>
+                        <span className="fourthColumn">Completed</span>
+                    </li>
+                    {displayTasks()}
                 </ul>
+
+                <div className="pagination">
+                    <button onClick={previousPage}>{"<"}</button>
+                    <span>{page}</span>
+                    <button onClick={nextPage}> {">"} </button>
+                </div>
     </div>
 });
