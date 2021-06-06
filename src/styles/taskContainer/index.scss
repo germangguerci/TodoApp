@@ -1,0 +1,20 @@
+.taskContainer{
+    padding: 0.8em;
+  }
+  
+.taskHeader{
+display: flex; 
+align-items: center;
+h2{
+    font-size: 1.4em;
+    font-weight: 400;
+}
+}
+
+.selectBulkAction{
+margin-right: 1em;
+}
+
+.selectTodosPP{
+margin-left: 1em;
+}

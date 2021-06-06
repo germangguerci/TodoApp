@@ -1,0 +1,25 @@
+.tableOptions{
+    display: flex; 
+  }
+  
+.tableContainer{
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  margin: 1em 0;
+  background: $secondaryBackgroundColor;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
