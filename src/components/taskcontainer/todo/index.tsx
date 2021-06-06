@@ -54,8 +54,10 @@ export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, set
             {completed ? "completed" : "incomplete"}
         </td>
         <td>
-            <button onClick={() => setOpenUpdate({open: true, todoToUpdate: id})}>Edit</button>
-            <DeleteAlert id={id} />
+            <div className="quickActions">
+                <button onClick={() => setOpenUpdate({open: true, todoToUpdate: id})}>Edit</button>
+                <DeleteAlert id={id} />
+            </div>  
         </td>
     </tr>)
 }

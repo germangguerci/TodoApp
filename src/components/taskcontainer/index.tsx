@@ -13,7 +13,7 @@ interface TodoListProps {
     todoStore: TodoStoreImpl
 }
 
-export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
+export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => {
 
   
     const [todosPerPage, setTodosPerPage] = useState(5);
@@ -50,7 +50,7 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
         }
     }
 
-    return <div className="TodoList">
+    return <div className="taskContainer">
                 <div>
                     <h1>Tasks</h1>
                     <button onClick={() => setOpenAdd(true)}>Add task</button>
@@ -66,18 +66,20 @@ export const TodoList: React.FC<TodoListProps> = observer(({todoStore}) => {
                     {(bulkAction !== '' && bulkSelection.length > 0) && <BulkActionAlert bulkSelection={bulkSelection} bulkAction={bulkAction} setBulkSelection={setBulkSelection}/>}
                 </div>
 
-                <table >
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <th>Title</th>
-                            <th>Difficulty</th>
-                            <th>Completed</th>
-                            <th>Quick Actions</th>
-                        </tr>
-                    {displayTasks()}
-                    </tbody>
-                </table>
+                <div className="tableContainer">
+                    <table >
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" /></td>
+                                <th>Title</th>
+                                <th>Difficulty</th>
+                                <th>Completed</th>
+                                <th>Quick Actions</th>
+                            </tr>
+                        {displayTasks()}
+                        </tbody>
+                    </table>
+                </div>
 
                 <div className="pagination">
                     <button onClick={previousPage}>{"<"}</button>

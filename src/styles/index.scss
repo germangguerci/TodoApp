@@ -12,9 +12,17 @@ body {
   }
 
 .App{
-    max-width: 1368px;
+    max-width: 90%;
     background-color: $primaryBackgroundColor;
     margin: auto;
+}
+
+.taskContainer{
+  padding: 1em;
+}
+
+.tableContainer{
+  overflow-x: auto;
 }
 
 //todo list start
@@ -40,7 +48,9 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-
+.quickActions{
+  display:flex;
+}
 
 
 //pagination start
