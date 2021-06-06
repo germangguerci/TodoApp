@@ -12,7 +12,7 @@ export const SelectTodosPerPage : React.FC <SelectProps> = ({setTodosPerPage}) =
     }, [value, setTodosPerPage]);
 
     return (
-        <select value={value} onChange={(event) => setValue(parseInt(event.target.value))}>
+        <select className={"selectTodosPP"} value={value} onChange={(event) => setValue(parseInt(event.target.value))}>
             <option defaultValue="" value="15" disabled>Rows per page</option>	
             <option value="5">5 rows</option>
             <option value="10">10 rows</option>

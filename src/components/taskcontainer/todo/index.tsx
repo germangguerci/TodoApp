@@ -52,7 +52,7 @@ export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, set
             {calculateDifficulty()}
         </td>
         <td>
-            {completed ? "C" : "I"}
+            {completed ? "Done" : "To do"}
         </td>
     </tr>)
 }

@@ -8,6 +8,7 @@ import { UpdateTodoModal } from './modals/UpdateTodoModal';
 import { SelectBulkAction } from './selects/SelectBulkAction';
 import { BulkActionAlert } from './alerts/BulkActionAlert';
 import SimpleAlert from './alerts/SimpleAlert';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 
 interface TodoListProps {
     todoStore: TodoStoreImpl
@@ -78,7 +79,7 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
                     <table >
                         <tbody>
                             <tr>
-                                <td><input type="checkbox" onClick={() => selectAllTasks()}/></td>
+                                <td><DoneAllIcon fontSize="small" onClick={() => selectAllTasks()}/></td>
                                 <th>Title</th>
                                 <th>Difficulty</th>
                                 <th>Status</th>

@@ -24,6 +24,10 @@ select{
     max-width: 90%;
     background-color: $primaryBackgroundColor;
     margin: auto;
+    @media (max-width: 600px) {
+      max-width: 100%;
+      height: 100%;
+    }
 }
 
 .taskContainer{
@@ -38,7 +42,6 @@ select{
     font-weight: 400;
   }
 }
-
 button{
   text-decoration: none;
   border: 1px solid $contrastColor;
@@ -49,6 +52,14 @@ button{
   padding: 0.4em 0.6em;
   margin: 0 0.5em;
   height: 2.5em;
+}
+
+.selectBulkAction{
+  margin-right: 1em;
+}
+
+.selectTodosPP{
+  margin-left: 1em;
 }
 
 //table Options start
