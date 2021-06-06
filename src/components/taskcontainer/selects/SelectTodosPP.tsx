@@ -5,7 +5,7 @@ interface SelectProps {
 }
 
 export const SelectTodosPerPage : React.FC <SelectProps> = ({setTodosPerPage}) => {
-    const [value, setValue] = useState(5);
+    const [value, setValue] = useState(15);
     
     useEffect(() => {
         setTodosPerPage(value)    
@@ -13,9 +13,10 @@ export const SelectTodosPerPage : React.FC <SelectProps> = ({setTodosPerPage}) =
 
     return (
         <select value={value} onChange={(event) => setValue(parseInt(event.target.value))}>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="25">25</option>
+            <option defaultValue="" value="15" disabled>Rows per page</option>	
+            <option value="5">5 rows</option>
+            <option value="10">10 rows</option>
+            <option value="25">25 rows</option>
         </select>
     )
 }

@@ -47,9 +47,9 @@ export const BulkActionAlert: React.FC<BulkActionAlertProps> = observer(function
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <button onClick={handleClickOpen}>
         Apply
-      </Button>
+      </button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -66,7 +66,7 @@ export const BulkActionAlert: React.FC<BulkActionAlertProps> = observer(function
           <Button onClick={handleClose} color="primary">
             Disagree
           </Button>
-          <Button onClick={handleApply} color="primary" autoFocus>
+          <Button onClick={handleApply}>
             Agree
           </Button>
         </DialogActions>

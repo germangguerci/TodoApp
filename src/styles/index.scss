@@ -1,5 +1,6 @@
 $primaryBackgroundColor: rgb(235, 235, 235);
 $secondaryBackgroundColor: white;
+$contrastColor: #2271b1;
 
 body {
     margin: 0;
@@ -9,7 +10,15 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: rgb(46, 46, 46);
-  }
+}
+
+input{
+  height: 2em;
+}
+
+select{
+  height: 2.5em;
+}
 
 .App{
     max-width: 90%;
@@ -18,38 +27,82 @@ body {
 }
 
 .taskContainer{
-  padding: 1em;
+  padding: 0.8em;
 }
 
+.taskHeader{
+  display: flex; 
+  align-items: center;
+  h2{
+    font-size: 1.4em;
+    font-weight: 400;
+  }
+}
+
+button{
+  text-decoration: none;
+  border: 1px solid $contrastColor;
+  border-radius: 2px;
+  color: $contrastColor;
+  background: $secondaryBackgroundColor;
+  cursor: pointer;
+  padding: 0.4em 0.6em;
+  margin: 0 0.5em;
+  height: 2.5em;
+}
+
+//table Options start
+.tableOptions{
+  display: flex; 
+
+}
+
+//table start
 .tableContainer{
   overflow-x: auto;
 }
 
-//todo list start
-.TodoList{
-  display: flex;
-  flex-direction: column;
-  padding: 1em; 
-}
-
-//table start
 table {
   border-collapse: collapse;
   width: 100%;
+  margin: 1em 0;
+  background: $secondaryBackgroundColor;
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-weight: 100;
+  font-size: 14px;
 }
+
+
 
 tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-.quickActions{
+.titleField{
   display:flex;
+  align-items:flex-start;
+  button{
+    margin: 0;
+  }
+}
+
+.taskTitle{
+  cursor: pointer;
+  color: $contrastColor;
+  font-weight: 600;
+  margin: 0;
+}
+
+.deleteIcon{
+  color: #1d5d92;
+  font-size: 2em;
+  cursor: pointer;
+  margin-left: 1em;
 }
 
 
@@ -58,6 +111,7 @@ tr:nth-child(even) {
   display: flex;
   width: 100%;
   justify-content: center;
+  align-items: center;
 }
 
 //modal start
@@ -80,7 +134,21 @@ tr:nth-child(even) {
   margin: 15% auto; 
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; 
+  width: 60%; 
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  label{
+    display: flex;
+    flex-direction: column;
+    input{
+      width: fit-content;
+    }
+  }
+  button{
+    max-width: fit-content;
+  }
 }
 
 /* The Close Button */

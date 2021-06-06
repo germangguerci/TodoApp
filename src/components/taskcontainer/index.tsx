@@ -16,7 +16,7 @@ interface TodoListProps {
 export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => {
 
   
-    const [todosPerPage, setTodosPerPage] = useState(5);
+    const [todosPerPage, setTodosPerPage] = useState(15);
     const [page, setCurrentPage] = useState(1); 
     const [openAdd, setOpenAdd] = useState(false);
     const [openUpdate, setOpenUpdate] = useState({open: false, todoToUpdate: 0});
@@ -51,8 +51,8 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
     }
 
     return <div className="taskContainer">
-                <div>
-                    <h1>Tasks</h1>
+                <div className="taskHeader">
+                    <h2>Tasks</h2>
                     <button onClick={() => setOpenAdd(true)}>Add task</button>
                 </div>
 
@@ -60,10 +60,10 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
                 {openAdd && <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>}
                 {openUpdate.open && <UpdateTodoModal openUpdate={openUpdate} setOpenUpdate={setOpenUpdate} />}
                 
-                <div>
-                    <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
+                <div className="tableOptions">
                     <SelectBulkAction setBulkAction={setBulkAction} bulkAction={bulkAction}/>
                     {(bulkAction !== '' && bulkSelection.length > 0) && <BulkActionAlert bulkSelection={bulkSelection} bulkAction={bulkAction} setBulkSelection={setBulkSelection}/>}
+                    <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
                 </div>
 
                 <div className="tableContainer">
@@ -73,8 +73,7 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
                                 <td><input type="checkbox" /></td>
                                 <th>Title</th>
                                 <th>Difficulty</th>
-                                <th>Completed</th>
-                                <th>Quick Actions</th>
+                                <th>Status</th>
                             </tr>
                         {displayTasks()}
                         </tbody>

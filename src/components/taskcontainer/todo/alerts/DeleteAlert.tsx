@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { TodoStore } from '../../store';
 import { observer } from 'mobx-react';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 interface DeleteAlertProps{
   id: number
@@ -25,9 +26,7 @@ export const DeleteAlert: React.FC<DeleteAlertProps> = observer(function DeleteA
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Delete
-      </Button>
+      <DeleteIcon className="deleteIcon" onClick={handleClickOpen} />
       <Dialog
         open={open}
         onClose={handleClose}

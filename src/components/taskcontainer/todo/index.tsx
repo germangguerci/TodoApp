@@ -44,20 +44,15 @@ export const Todo: React.FC<TodoProps> = ({id, title, difficulty, completed, set
         <td>
             <input type="checkbox" checked={selected} onChange={handleSelect}/>
         </td>
-        <td>
-            {title}
+        <td className="titleField">
+            <p className="taskTitle" onClick={() => setOpenUpdate({open: true, todoToUpdate: id})}>{title}</p>
+            <DeleteAlert id={id} />
         </td>
         <td>
             {calculateDifficulty()}
         </td>
         <td>
-            {completed ? "completed" : "incomplete"}
-        </td>
-        <td>
-            <div className="quickActions">
-                <button onClick={() => setOpenUpdate({open: true, todoToUpdate: id})}>Edit</button>
-                <DeleteAlert id={id} />
-            </div>  
+            {completed ? "C" : "I"}
         </td>
     </tr>)
 }
