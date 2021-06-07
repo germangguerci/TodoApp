@@ -60,10 +60,8 @@ export const UpdateTodoModal: React.FC<updateTodoModalProps> = observer(({openUp
                 </label>
 
                 <button onClick={() => {
-                    if (title) {
-                        TodoStore.updateTodo(openUpdate.todoToUpdate, title, difficulty, completed)
-                        setTitle('');
-                    }
+                    title && TodoStore.updateTodo(openUpdate.todoToUpdate, title, difficulty, completed)
+                    setOpenUpdate(false);
                 }}>submit</button>
             </div>
         </div>
