@@ -2,14 +2,16 @@ import React, {useState, useEffect} from 'react';
 
 interface SelectProps {
     setTodosPerPage: Function
+    setCurrentPage: Function
 }
 
-export const SelectTodosPerPage : React.FC <SelectProps> = ({setTodosPerPage}) => {
+export const SelectTodosPerPage : React.FC <SelectProps> = ({setTodosPerPage, setCurrentPage}) => {
     const [value, setValue] = useState(15);
     
     useEffect(() => {
         setTodosPerPage(value)    
-    }, [value, setTodosPerPage]);
+        setCurrentPage(1)
+    }, [value, setTodosPerPage, setCurrentPage]);
 
     return (
         <select className={"selectTodosPP"} value={value} onChange={(event) => setValue(parseInt(event.target.value))}>

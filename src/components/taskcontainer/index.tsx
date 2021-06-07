@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
-import React, { useEffect, useState } from 'react';
-import { TodoStoreImpl } from './store';
+import React, { useState } from 'react';
+import { TodoStore } from './store';
 import { Todo } from './todo';
 import { SelectTodosPerPage } from './selects/SelectTodosPP';
 import { AddTodoModal } from './modals/AddTodoModal';
@@ -10,13 +10,8 @@ import { BulkActionAlert } from './alerts/BulkActionAlert';
 import SimpleAlert from './alerts/SimpleAlert';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 
-interface TodoListProps {
-    todoStore: TodoStoreImpl
-}
+export const TaskContainer: React.FC = observer(() => {
 
-export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => {
-
-  
     const [todosPerPage, setTodosPerPage] = useState(15);
     const [page, setCurrentPage] = useState(1); 
     const [openAdd, setOpenAdd] = useState(false);
@@ -24,14 +19,9 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
     const [bulkSelection, setBulkSelection] = useState<Array<number>>([]);
     const [bulkAction, setBulkAction] = useState('');
 
-    useEffect(() => {
-        !todoStore.todos[(page * todosPerPage)] && setCurrentPage(1);
-        // eslint-disable-next-line
-    }, [todosPerPage])
-
     const selectAllTasks = () => {
         let startIndex = ((page - 1) * todosPerPage)
-        let arr = todoStore.todos.slice(startIndex, (startIndex + todosPerPage))
+        let arr = TodoStore.todos.slice(startIndex, (startIndex + todosPerPage))
         let newBulkSelection = [...bulkSelection]
         arr.forEach(item => newBulkSelection.indexOf(item.id) === -1 && newBulkSelection.push(item.id))
         setBulkSelection(newBulkSelection);
@@ -39,7 +29,7 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
 
     const displayTasks = () => {
         let count = 0; 
-        return todoStore.todos.map((todo, index) => {
+        return TodoStore.todos.map((todo, index) => {
             if((index >= (page - 1) * todosPerPage) && count < todosPerPage){
                 count++
                 return <Todo key={index} id={todo.id} title={todo.title} difficulty={todo.difficulty} completed={todo.completed} 
@@ -54,7 +44,7 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
     }
 
     const nextPage = () => {
-        if(todoStore.todos[(page * todosPerPage)]){
+        if(TodoStore.todos[(page * todosPerPage)]){
             setCurrentPage(page + 1)
         }
     }
@@ -66,14 +56,14 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
                 </div>
 
                 <SimpleAlert />
-                {openAdd && <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={todoStore}/>}
+                {openAdd && <AddTodoModal openAdd={openAdd} setOpenAdd={setOpenAdd} todoStore={TodoStore}/>}
                 {openUpdate.open && <UpdateTodoModal openUpdate={openUpdate} setOpenUpdate={setOpenUpdate} />}
                 
                 <div className="tableOptions">
                     <SelectBulkAction setBulkAction={setBulkAction} bulkAction={bulkAction}/>
                     {(bulkAction !== '' && bulkSelection.length > 0) && 
                     <BulkActionAlert bulkSelection={bulkSelection} bulkAction={bulkAction} setBulkSelection={setBulkSelection}/>}
-                    <SelectTodosPerPage setTodosPerPage={setTodosPerPage} />
+                    <SelectTodosPerPage setTodosPerPage={setTodosPerPage} setCurrentPage={setCurrentPage}/>
                 </div>
 
                 <div className="tableContainer">
@@ -85,7 +75,7 @@ export const TaskContainer: React.FC<TodoListProps> = observer(({todoStore}) => 
                                 <th>Difficulty</th>
                                 <th>Status</th>
                             </tr>
-                        {displayTasks()}
+                            {displayTasks()}
                         </tbody>
                     </table>
                 </div>
