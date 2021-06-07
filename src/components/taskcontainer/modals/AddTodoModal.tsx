@@ -24,7 +24,7 @@ export const AddTodoModal: React.FC<addTodoModalProps> = ({setOpenAdd, todoStore
                         }}
                         type="text" />  
                 </label>
-                <label>Difficulty: 
+                <label>Difficulty: {difficulty}
                     <input
                             value={difficulty}
                             onChange={(event) => setDifficulty(parseInt(event.target.value))}
@@ -38,6 +38,7 @@ export const AddTodoModal: React.FC<addTodoModalProps> = ({setOpenAdd, todoStore
                     if (value) {
                         todoStore.addTodo(value, difficulty);
                         setValue('');
+                        setDifficulty(0);
                     }
                 }}>Add task</button>
             </div>

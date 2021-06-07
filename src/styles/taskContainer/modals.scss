@@ -41,6 +41,7 @@
       font-weight: 600;
       text-transform: capitalize;
     }
+  
   }
 
   .close {
@@ -57,4 +58,8 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .statusButton{
+    margin: 0.4em 0;
   }

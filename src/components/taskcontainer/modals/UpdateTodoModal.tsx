@@ -41,7 +41,7 @@ export const UpdateTodoModal: React.FC<updateTodoModalProps> = observer(({openUp
                     />
                 </label> 
 
-                <label>Difficulty:  
+                <label>Difficulty: {difficulty} 
                     <input
                         value={difficulty}
                         onChange={(event) => setDifficulty(parseInt(event.target.value))}
@@ -52,10 +52,12 @@ export const UpdateTodoModal: React.FC<updateTodoModalProps> = observer(({openUp
                     />
                 </label>  
 
-                <button onClick={() => setCompleted(!completed)}>
-                    {completed && "Set incomplet"}
-                    {!completed && "Set completed"}
-                </button>
+                <label>Status: 
+                    <button className="statusButton" onClick={() => setCompleted(!completed)}>
+                        {completed && "Done"}
+                        {!completed && "To Do"}
+                    </button>
+                </label>
 
                 <button onClick={() => {
                     if (title) {

@@ -81,9 +81,9 @@ export const TaskContainer: React.FC = observer(() => {
                 </div>
 
                 <div className="pagination">
-                    <button onClick={previousPage}>{"<"}</button>
+                    {page > 1 && <button onClick={previousPage}>{"<"}</button>}
                     <span>{page}</span>
-                    <button onClick={nextPage}> {">"} </button>
+                    {TodoStore.todos[(page * todosPerPage)] && <button onClick={nextPage}> {">"} </button>}
                 </div>
     </div>
 });
